@@ -1,23 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics
-from .models import GerenteDeObra, MestreDeObra, Obra, Empresa, Acompanhamento, Material
-from .serializers import GerenteDeObraSerializer, MestreDeObraSerializer, ObraSerializer, EmpresaSerializer, AcompanhamentoSerializer, MaterialSerializer
-
-class GerenteDeObraListCreateView(generics.ListCreateAPIView):
-    queryset = GerenteDeObra.objects.all()
-    serializer_class = GerenteDeObraSerializer
-
-class GerenteDeObraDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = GerenteDeObra.objects.all()
-    serializer_class = GerenteDeObraSerializer
-
-class MestreDeObraListCreateView(generics.ListCreateAPIView):
-    queryset = MestreDeObra.objects.all()
-    serializer_class = MestreDeObraSerializer
-
-class MestreDeObraDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = MestreDeObra.objects.all()
-    serializer_class = MestreDeObraSerializer
+from .models import  Obra, Empresa, Acompanhamento, Material
+from .serializers import  ObraSerializer, EmpresaSerializer, AcompanhamentoSerializer, MaterialSerializer
 
 class ObraListCreateView(generics.ListCreateAPIView):
     queryset = Obra.objects.all()

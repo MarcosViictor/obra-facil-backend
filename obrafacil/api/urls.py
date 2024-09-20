@@ -1,8 +1,6 @@
 
 from django.urls import path
 from .views import (
-    GerenteDeObraListCreateView, GerenteDeObraDetailView,
-    MestreDeObraListCreateView, MestreDeObraDetailView,
     ObraListCreateView, ObraDetailView,
     EmpresaListCreateView, EmpresaDetailView,
     AcompanhamentoListCreateView, AcompanhamentoDetailView,
@@ -10,14 +8,6 @@ from .views import (
 )
 
 urlpatterns = [
-    # GerenteDeObra URLs
-    path('gerentes/', GerenteDeObraListCreateView.as_view(), name='gerente-list-create'),
-    path('gerentes/<int:pk>/', GerenteDeObraDetailView.as_view(), name='gerente-detail'),
-
-    # MestreDeObra URLs
-    path('mestres/', MestreDeObraListCreateView.as_view(), name='mestre-list-create'),
-    path('mestres/<int:pk>/', MestreDeObraDetailView.as_view(), name='mestre-detail'),
-
     # Obra URLs
     path('obras/', ObraListCreateView.as_view(), name='obra-list-create'),
     path('obras/<int:pk>/', ObraDetailView.as_view(), name='obra-detail'),

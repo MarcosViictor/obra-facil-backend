@@ -10,57 +10,12 @@ class Base(models.Model):
     class Meta:
         abstract = True
 
-class GerenteDeObra(Base):
-    nome = models.CharField(max_length=50)
-    email = models.EmailField()
-    senha = models.CharField(max_length=50)
-
-    class Meta:
-        verbose_name = 'Gerente de Obra'
-        verbose_name_plural = 'Gerentes de Obra'
-
-    def __str__(self):
-        return self.nome
-    
-    def set_safeword(self, raw_safeword):
-        
-        self.safeword = make_password(raw_safeword)
-
-    def check_safeword(self, raw_safeword):
-        
-        return check_password(raw_safeword, self.safeword)
-    
-
-class MestreDeObra(Base):
-    nome = models.CharField(max_length=50)
-    email = models.EmailField()
-    senha = models.CharField(max_length=50)
-
-    gerente_de_obra = models.ForeignKey(GerenteDeObra, on_delete=models.CASCADE, related_name='mestres_de_obra')
-
-    class Meta:
-        verbose_name = 'Mestre de Obra'
-        verbose_name_plural = 'Mestres de Obra'
-
-    def __str__(self):
-        return self.nome
-       
-    def set_safeword(self, raw_safeword):
-        
-        self.safeword = make_password(raw_safeword)
-
-    def check_safeword(self, raw_safeword):
-        
-        return check_password(raw_safeword, self.safeword)
-
 class Obra(Base):
     nome = models.CharField(max_length=50)
     descricao = models.TextField()
     dt_inicio = models.DateTimeField()
     dt_fim = models.DateTimeField()
     empresa = models.ForeignKey('Empresa', on_delete=models.CASCADE)
-    mestre_de_obra = models.ForeignKey(MestreDeObra, on_delete=models.CASCADE)
-
     class Meta:
         verbose_name = 'Obra'
         verbose_name_plural = 'Obras'
@@ -85,8 +40,6 @@ class Acompanhamento(Base):
     url = models.URLField(max_length=200, unique=True)
     desc = models.TextField()
     data = models.DateTimeField()
-    mestre_de_obra = models.ForeignKey(MestreDeObra, on_delete=models.CASCADE)
-
     class Meta:
         verbose_name = 'Acompanhamento'
         verbose_name_plural = 'Acompanhamentos'
